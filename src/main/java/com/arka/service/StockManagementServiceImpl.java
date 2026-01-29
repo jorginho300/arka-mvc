@@ -25,7 +25,7 @@ public class StockManagementServiceImpl implements StockManagementService {
 	public StockManagement addStock(Long productId, int amount) {
 		if(amount > 0) {
 			Product product = productRepository.findById(productId).orElseThrow(() -> new RuntimeException("Product not found"));
-			product.setStock(amount);
+			product.setStock(product.getStock() + amount);
 			
 			StockManagement stock = new StockManagement();
 			stock.setCreatedAt(LocalDate.now());

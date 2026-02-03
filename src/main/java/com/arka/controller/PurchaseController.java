@@ -37,8 +37,14 @@ public class PurchaseController {
 	}
 	
 	@GetMapping("/customer/{customerId}/history")
-	public ResponseEntity<List<PurchaseOrderResponse>> findPurchasesByCustomer(@PathVariable Long clienteId) {
-		List<PurchaseOrderResponse> purchases = orderService.findPurchaseOrdersByCustomer(clienteId);
+	public ResponseEntity<List<PurchaseOrderResponse>> findPurchasesByCustomer(@PathVariable Long customerId) {
+		List<PurchaseOrderResponse> purchases = orderService.findPurchaseOrdersByCustomer(customerId);
 		return ResponseEntity.ok(purchases);
+	}
+	
+	@GetMapping("/{purchaseId}")
+	public ResponseEntity<PurchaseOrderResponse> findPurchases(@PathVariable Long purchaseOrderId) {
+		PurchaseOrderResponse purchase = orderService.findPurchaseOrdersById(purchaseOrderId);
+		return ResponseEntity.ok(purchase);
 	}
 }
